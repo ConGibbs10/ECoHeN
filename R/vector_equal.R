@@ -5,6 +5,7 @@
 #'
 #' @return `TRUE` or `FALSE` depending on whether the vectors are equal.
 #' @export
+#' @keywords internal
 #'
 #' @examples
 #' x <- c(1, 2, 3)

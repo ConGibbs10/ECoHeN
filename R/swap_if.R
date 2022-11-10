@@ -6,6 +6,7 @@
 #'
 #' @return Dataframe with the proper ordering of columns.
 #' @export
+#' @keywords internal
 #'
 #' @examples
 #' df <- data.frame(a = c(1, 8, 3), b = c(1, 2, 27))

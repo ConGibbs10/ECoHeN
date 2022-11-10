@@ -8,6 +8,7 @@
 #'
 #' @return A dataframe with unique connection combinations.
 #' @export
+#' @keywords internal
 create_type_map <- function(G, node_type) {
   node_types <- igraph::vertex_attr(G, name = node_type)
   unique_node_types <- unique(node_types)

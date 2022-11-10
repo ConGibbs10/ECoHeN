@@ -8,10 +8,11 @@
 #' @importFrom data.table uniqueN
 #'
 #' @return A list with needed graph summaries, including: (1) the node set, (2)
-#' edge set, (3) cardnality of the vertex set, (4) cardnality of the edge set,
+#' edge set, (3) cardinality of the vertex set, (4) cardinality of the edge set,
 #' (5) number of node types, (6) data frame with mapping between node and node type,
 #' (7) adjacency list, and (8) the type map
 #' @export
+#' @keywords internal
 eval_G <- function(G, node_type) {
   node_set <- igraph::V(G)
   nodes <- data.frame(node = as.integer(node_set),

@@ -6,7 +6,7 @@
 #' @param affiliation List of communities or membership list.
 #' @param method String `c2m` or `m2c`.
 #'
-#' @return The converted community strucuture.
+#' @return The converted community structure.
 #' @export
 convert_affiliation <-
   function(G, affiliation, method = c('c2m', 'm2c')) {
