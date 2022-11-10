@@ -11,7 +11,12 @@
 #'
 #' @return A `ggplot` object.
 #' @export
-viz_heterogeneous_sbm <- function(G, block_communities = FALSE) {
+#' @examples
+#' \dontrun{
+#' G <- sample_heterogeneous_sbm()
+#' viz_heterogeneous_sbm(G, block_communities = TRUE)
+#' }
+viz_heterogeneous_sbm <- function(G, block_communities = TRUE) {
   title <- igraph::graph_attr(G, name = 'title')
   if(length(title) == 0 || title != 'Heterogeneous Stochastic Block Model') {
     stop('Graph is not a heterogenous stochastic block model.')
@@ -59,7 +64,7 @@ viz_heterogeneous_sbm <- function(G, block_communities = FALSE) {
   mat[!isOne] <- 1
 
   # save matrix as a raster and plot
-  raster <- as.matrix(as.raster(mat))
+  raster <- as.matrix(grDevices::as.raster(mat))
 
   # make plot
   plot <-
