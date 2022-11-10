@@ -2,7 +2,7 @@
 #'
 #' @param G igraph representation of graph.
 #' @param node_type Name of vertex attribute containing the node types.
-#' @param alpha Numeric between 0 and 1 representing desired type I error rate.
+#' @param alpha Numeric between 0 and 1 representing significance level.
 #' @param loco_samples Logical indicating whether or not to consider only locally optimal seed sets.
 #'
 #' @return Possibly, G.
@@ -34,7 +34,7 @@ check_arguments <- function(G,
 
   # check that alpha is a numeric between 0 and 0.8;
   if (!is.numeric(alpha) | alpha <= 0 | alpha >= 1) {
-    stop('Type I error rate, alpha, should be between 0 and 1.')
+    stop('Significance level, alpha, should be between 0 and 1.')
   }
 
   # check that loco_samples is a boolean
