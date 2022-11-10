@@ -1,21 +1,29 @@
-#' Greedy method to extract statistically significant communities from a heterogeneous graph where nodes are differentiated by type and edges are distinguished from their incident node types.
+#' Extract communities from heterogeneous networks (ECoHeN)
+#'
+#' @details Method to extract statistically significant communities from a heterogeneous
+#' graph where nodes are differentiated by type and edges are distinguished from
+#' their incident node types.
 #'
 #' @param G igraph representation of graph.
 #' @param node_type Name of vertex attribute containing the node types.
-#' @param alpha Numeric between 0 and 1 representing desired type I error rate.
-#' @param nsamples Integer between 1 and the number of nodes in `G` representing the number of samples to be taken.
+#' @param alpha Numeric between 0 and 1 representing desired significance level.
+#' @param learning_rate Numeric between 0 and 1 dictating the maximal allowance on the first iteration.
+#' @param decay_rate Numeric between 0 and 1 dictating the maximal allowance after the first iteration.
+#' @param adj_method Character scalar for the desired multiple correction method. See `p.adjust.methods` for options.
+#' @param max_iter Integer scalar for the maximum number of iterations before halting the extraction procedure.
+#' @param loco_samples Logical indicating whether or not to use locally optimal seed sets.
 #'
 #' @importFrom dplyr %>%
 #'
 #' @return A list with the extracted community structure.
 #' @export
-cluster_burn <-
+cluster_ECoHeN <-
   function(G,
            node_type,
            alpha,
-           adj_method = 'fdr',
            learning_rate = 1,
-           decay_rate = 0.6,
+           decay_rate = 0.99,
+           adj_method = 'fdr',
            max_iter = igraph::vcount(G),
            loco_samples = FALSE) {
     # check that arguments meet expectations
@@ -46,7 +54,7 @@ cluster_burn <-
     # sample nodes according to nsamples
     if (loco_samples) {
       message('Gathering locally optimal egonets...')
-      sample_vids <- eval_loco_egonets(G = G, G_stats = G_stats)
+      sample_vids <- eval_loco_egonets(G_stats = G_stats)
     } else {
       sample_vids <- seq_len(G_stats$n)
     }
