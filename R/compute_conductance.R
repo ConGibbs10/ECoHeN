@@ -1,19 +1,17 @@
 #' Compute conductance of a cut.
 #'
-#' @param G igraph representation of graph.
-#' @param vids Vector of vertex ids.
-#'
-#' @importFrom igraph %--%
+#' @param B0 Vector of vertices representing the candidate community.
+#' @param G_stats List of graph statistics returned from `eval_G`.
 #'
 #' @return A double between 0 and 1.
-#' @keywords internal
 #' @export
-compute_conductance <- function(G, vids) {
-  V <- seq_len(igraph::vcount(G))
-  vidsp <- setdiff(V, vids)
-  cut <- length(igraph::E(G)[vids %--% vidsp])
-  ivids <- length(igraph::E(G)[vids %--% V])
-  ividsp <- length(igraph::E(G)[vidsp %--% V])
-
-  return(cut / min(ivids, ividsp))
+#' @keywords internal
+compute_conductance <- function(B0, G_stats) {
+  V <- G_stats$nodes$node
+  B0c <- setdiff(V, B0)
+  return(
+    sum(unlist(G_stats$adj_nodes[B0]) %in% B0c)/
+      min(sum(unlist(G_stats$adj_nodes[B0]) %in% V),
+          sum(unlist(G_stats$adj_nodes[B0c]) %in% V))
+  )
 }
