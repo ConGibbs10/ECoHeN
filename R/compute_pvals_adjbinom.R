@@ -11,6 +11,7 @@
 #' @param G_stats List of graph statistics returned from `eval_G`.
 #'
 #' @importFrom dplyr %>%
+#' @importFrom fastmatch ctapply
 #'
 #' @return A list with K elements. Each element represents the probability of connection to the candidate community in the unipartite and bipartite subgraphs.
 #' @export
