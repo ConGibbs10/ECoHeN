@@ -1,4 +1,4 @@
-#' Verify that hESSC arguments meet expectations.
+#' Verify that ECoHeN arguments meet expectations.
 #'
 #' @param G igraph representation of graph.
 #' @param node_type Name of vertex attribute containing the node types.

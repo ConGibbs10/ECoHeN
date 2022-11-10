@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_arguments.R
 \name{check_arguments}
 \alias{check_arguments}
-\title{Verify that hESSC arguments meet expectations.}
+\title{Verify that ECoHeN arguments meet expectations.}
 \usage{
 check_arguments(G, node_type, alpha, loco_samples)
 }
@@ -19,6 +19,6 @@ check_arguments(G, node_type, alpha, loco_samples)
 Possibly, G.
 }
 \description{
-Verify that hESSC arguments meet expectations.
+Verify that ECoHeN arguments meet expectations.
 }
 \keyword{internal}
