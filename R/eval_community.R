@@ -6,6 +6,8 @@
 #' @param G igraph representation of graph.
 #' @param vids Vector of vertex ids representing a single community.
 #'
+#' @importFrom RcppAlgos comboGeneral
+#'
 #' @return Data frame.
 #' @export
 eval_community <- function(G, vids) {

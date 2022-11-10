@@ -5,9 +5,12 @@
 #'
 #' @param B Symmetric modularity matrix
 #'
-#' @return The community membership vector
 #' @import igraph
 #' @import Matrix
+#'
+#' @return The community membership vector
+#' @export
+#' @keywords internal
 genlouvain <- function(B) {
   # function to compute the "effective" adjacency matrix of a network whose nodes
   # represent communities in the larger input matrix.

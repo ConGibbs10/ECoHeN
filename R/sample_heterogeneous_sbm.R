@@ -10,6 +10,9 @@
 #'
 #' @details The function generates a random graph according to a heterogeneous stochastic block model. The default is a graph with two node types and three communities. The first community consists of 300 type I and 240 type II nodes. The second community consists of 200 type I and 160 type II nodes. The third community consists of 100 type I and 80 type II nodes. If a type I node is in the same community as a type II node, then their rate of connection is 0.30 (i.e. `P[1,2] + R[1,2]`); otherwise, they are connected with probability 0.05 (i.e. `P[1,2]`), for example.
 #'
+#' @importFrom RcppAlgos comboGrid
+#' @importFrom RcppAlgos comboGeneral
+#'
 #' @return An `igraph` graph.
 #' @export
 #'
@@ -17,18 +20,18 @@
 #' \dontrun{
 #' sample_heterogeneous_sbm(
 #'  C = 2,
-#'  N = list(c(300, 100), c(300, 100)),
-#'  B = c(400, 400),
+#'  N = list(c(100, 50), c(100, 50)),
+#'  B = c(350, 350),
 #'  P = rbind(c(0.05, 0.05), c(0.05, 0.05)),
-#'  R = rbind(c(0.20, 0.15), c(0.15, 0))
+#'  R = rbind(c(0.25, 0.10), c(0.10, 0.20))
 #' )
 #' }
 sample_heterogeneous_sbm <-
   function(C = 2,
-           N = list(c(300, 100), c(300, 100)),
-           B = c(400, 400),
+           N = list(c(100, 50), c(100, 50)),
+           B = c(350, 350),
            P = rbind(c(0.05, 0.05), c(0.05, 0.05)),
-           R = rbind(c(0.20, 0.20), c(0.20, 0))) {
+           R = rbind(c(0.25, 0.10), c(0.10, 0.20))) {
     nT <- length(N)
     PR <- P + R
     # function to check equality
@@ -88,7 +91,7 @@ sample_heterogeneous_sbm <-
       grid <- data.frame(RcppAlgos::comboGrid(xnodes, ynodes))
       grid <- grid[grid$Var1 < grid$Var2,]
       # sample adjacencies, possibly multigraph
-      adj <- grid[runif(nrow(grid)) <= p,]
+      adj <- grid[stats::runif(nrow(grid)) <= p,]
       return(adj)
     }
 
