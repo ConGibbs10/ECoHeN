@@ -6,7 +6,7 @@
 #'
 #' @return A list with the communities and modularity measure.
 #' @export
-cluster_zcmodularity <- function(G, node_type, iter = 10) {
+cluster_ZCMod <- function(G, node_type, iter = 10) {
   # check arguments
   check_arguments(
     G = G,
@@ -20,7 +20,7 @@ cluster_zcmodularity <- function(G, node_type, iter = 10) {
   }
 
   # compute modularity matrix
-  M <- compute_zcmodularity_matrix(G = G, node_type = node_type)
+  M <- compute_ZCMod_matrix(G = G, node_type = node_type)
   M <- as.matrix(M)
   K <-
     length(unique(igraph::vertex_attr(G, node_type)))
