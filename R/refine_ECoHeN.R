@@ -5,7 +5,7 @@
 #' similarity index larger than beta.
 #'
 #' @param G igraph representation of graph.
-#' @param ecs Extracted community structure. Resulting object from `cluster_burn` or a list of vectors.
+#' @param ecs Extracted community structure. Resulting object from `cluster_ECoHeN` or a list of vectors.
 #' @param beta The maximal overlap between clusters.
 #' @param min_size The minimum cluster size to be considered.
 #' @param max_size The maximum cluster size to be considered.
@@ -13,9 +13,12 @@
 #' @param trace Logical indicating whether or not to keep the trace.
 #' @param verbose Logical indicating whether to print remaining communities.
 #'
+#' @importFrom dplyr %>%
+#' @importFrom RcppAlgos comboGeneral
+#'
 #' @return List containing the filtered community structure.
 #' @export
-refine_clusters <-
+refine_ECoHeN <-
   function(G,
            ecs,
            beta = 0.5,
