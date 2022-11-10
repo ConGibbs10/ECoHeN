@@ -85,8 +85,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // main_search_decay_cpp
-Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::List G_stats, double learning_rate, double decay_rate, int max_iter, Rcpp::String adj_method);
-RcppExport SEXP _ECoHeN_main_search_decay_cpp(SEXP alphaSEXP, SEXP B0SEXP, SEXP G_statsSEXP, SEXP learning_rateSEXP, SEXP decay_rateSEXP, SEXP max_iterSEXP, SEXP adj_methodSEXP) {
+Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::List G_stats, double learning_rate, double decay_rate, Rcpp::String adj_method, int max_iter);
+RcppExport SEXP _ECoHeN_main_search_decay_cpp(SEXP alphaSEXP, SEXP B0SEXP, SEXP G_statsSEXP, SEXP learning_rateSEXP, SEXP decay_rateSEXP, SEXP adj_methodSEXP, SEXP max_iterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -95,9 +95,9 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::List >::type G_stats(G_statsSEXP);
     Rcpp::traits::input_parameter< double >::type learning_rate(learning_rateSEXP);
     Rcpp::traits::input_parameter< double >::type decay_rate(decay_rateSEXP);
-    Rcpp::traits::input_parameter< int >::type max_iter(max_iterSEXP);
     Rcpp::traits::input_parameter< Rcpp::String >::type adj_method(adj_methodSEXP);
-    rcpp_result_gen = Rcpp::wrap(main_search_decay_cpp(alpha, B0, G_stats, learning_rate, decay_rate, max_iter, adj_method));
+    Rcpp::traits::input_parameter< int >::type max_iter(max_iterSEXP);
+    rcpp_result_gen = Rcpp::wrap(main_search_decay_cpp(alpha, B0, G_stats, learning_rate, decay_rate, adj_method, max_iter));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -122,30 +122,6 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< Rcpp::DoubleVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< int >::type N(NSEXP);
     rcpp_result_gen = Rcpp::wrap(smallest_indices2(x, N));
-    return rcpp_result_gen;
-END_RCPP
-}
-// smallest_indices3
-Rcpp::IntegerVector smallest_indices3(Rcpp::DoubleVector x, int N);
-RcppExport SEXP _ECoHeN_smallest_indices3(SEXP xSEXP, SEXP NSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::DoubleVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type N(NSEXP);
-    rcpp_result_gen = Rcpp::wrap(smallest_indices3(x, N));
-    return rcpp_result_gen;
-END_RCPP
-}
-// smallest_indices4
-Rcpp::IntegerVector smallest_indices4(Rcpp::DoubleVector x, int N);
-RcppExport SEXP _ECoHeN_smallest_indices4(SEXP xSEXP, SEXP NSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::DoubleVector >::type x(xSEXP);
-    Rcpp::traits::input_parameter< int >::type N(NSEXP);
-    rcpp_result_gen = Rcpp::wrap(smallest_indices4(x, N));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -230,8 +206,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_ECoHeN_main_search_decay_cpp", (DL_FUNC) &_ECoHeN_main_search_decay_cpp, 7},
     {"_ECoHeN_smallest_indices1", (DL_FUNC) &_ECoHeN_smallest_indices1, 2},
     {"_ECoHeN_smallest_indices2", (DL_FUNC) &_ECoHeN_smallest_indices2, 2},
-    {"_ECoHeN_smallest_indices3", (DL_FUNC) &_ECoHeN_smallest_indices3, 2},
-    {"_ECoHeN_smallest_indices4", (DL_FUNC) &_ECoHeN_smallest_indices4, 2},
     {"_ECoHeN_index_Cpp2R", (DL_FUNC) &_ECoHeN_index_Cpp2R, 1},
     {"_ECoHeN_index_R2Cpp", (DL_FUNC) &_ECoHeN_index_R2Cpp, 1},
     {"_ECoHeN_c_integer", (DL_FUNC) &_ECoHeN_c_integer, 2},

@@ -1,6 +1,12 @@
 #include <Rcpp.h>
 using namespace Rcpp;
 
+//' Converts C++ indices to R indices by adding one.
+//'
+//' @param x Integer vector.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerVector index_Cpp2R(Rcpp::IntegerVector x) {
   int n = x.size();
@@ -9,6 +15,12 @@ Rcpp::IntegerVector index_Cpp2R(Rcpp::IntegerVector x) {
   return out;
 }
 
+//' Converts R indices to C++ by subtracting one.
+//'
+//' @param x Integer vector.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerVector index_R2Cpp(Rcpp::IntegerVector x) {
   int n = x.size();
@@ -17,6 +29,13 @@ Rcpp::IntegerVector index_R2Cpp(Rcpp::IntegerVector x) {
   return out;
 }
 
+//' Concatenates two integer vectors.
+//'
+//' @param x Integer vector.
+//' @param y Integer vector.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerVector c_integer(Rcpp::IntegerVector x, Rcpp::IntegerVector y) {
   int xN = x.size();
@@ -33,6 +52,13 @@ Rcpp::IntegerVector c_integer(Rcpp::IntegerVector x, Rcpp::IntegerVector y) {
   return z;
 }
 
+//' Construct logical vector by comparing a character vector to a string.
+//'
+//' @param x Character vector.
+//' @param s String.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::LogicalVector vector_equals_string(Rcpp::CharacterVector x, Rcpp::String s) {
   int n = x.size();
@@ -45,6 +71,12 @@ Rcpp::LogicalVector vector_equals_string(Rcpp::CharacterVector x, Rcpp::String s
   return lx;
 }
 
+//' Indices of TRUE values in a logical vector.
+//'
+//' @param x Logical vector.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerVector which_true(Rcpp::LogicalVector x) {
   int n = x.size();
@@ -52,6 +84,14 @@ Rcpp::IntegerVector which_true(Rcpp::LogicalVector x) {
   return out[x];
 }
 
+//' Subset a matrix.
+//'
+//' @param M Integer matrix.
+//' @param rows Integer vector of rows in C++ indices.
+//' @param cols Integer vector of columns in C++ indices.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerMatrix subset_matrix(Rcpp::IntegerMatrix M, Rcpp::IntegerVector rows, Rcpp::IntegerVector cols){
   // source: https://stackoverflow.com/questions/59284212/efficient-matrix-subsetting-with-rcpp

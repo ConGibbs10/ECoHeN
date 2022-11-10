@@ -2,6 +2,16 @@
 #include "utilities.h"
 using namespace Rcpp;
 
+//' Identifies the smallest indices in a vector.
+//'
+//' @details Identifies the indices of the N smallest values in a double vector x,
+//' breaking ties uniformly at random. Uses a full sort.
+//'
+//' @param Vector of doubles.
+//' @param Integer for the number of indices to identify.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerVector smallest_indices1(Rcpp::DoubleVector x, int N){
   // breaks ties according to the values of y, generated uniformly at random
@@ -23,6 +33,16 @@ Rcpp::IntegerVector smallest_indices1(Rcpp::DoubleVector x, int N){
   return Rcpp::IntegerVector(indices.begin(), indices.begin() + rN);
 }
 
+//' Identifies the smallest indices in a vector.
+//'
+//' @details Identifies the indices of the N smallest values in a double vector x,
+//' breaking ties uniformly at random. Uses a partial sort.
+//'
+//' @param Vector of doubles.
+//' @param Integer for the number of indices to identify.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerVector smallest_indices2(Rcpp::DoubleVector x, int N){
   // breaks ties according to the values of y, generated uniformly at random
@@ -41,53 +61,4 @@ Rcpp::IntegerVector smallest_indices2(Rcpp::DoubleVector x, int N){
   });
 
   return Rcpp::IntegerVector(indices.begin(), indices.begin() + rN);
-}
-
-//[[Rcpp::export]]
-Rcpp::IntegerVector smallest_indices3(Rcpp::DoubleVector x, int N){
-  // does not break ties, simply returns the N smallest values of x and any values
-  // tied for N
-  if(N <= 0) {
-    throw std::range_error("N must be a positive integer.");
-  }
-
-  int xN = x.size();
-  int rN = (N > xN ? xN : N);
-  Rcpp::DoubleVector kS = Rcpp::DoubleVector(rN);
-  Rcpp::IntegerVector out;
-
-  Rcpp::Environment DescTools = Environment::namespace_env("DescTools");
-  Rcpp::Function Small = DescTools["Small"];
-
-  kS = Small(x, Rcpp::Named("k") = N);
-  out = which_true(x - kS[rN-1] <= 0.00000001);
-
-  return out;
-}
-
-//[[Rcpp::export]]
-Rcpp::IntegerVector smallest_indices4(Rcpp::DoubleVector x, int N){
-  // does not break ties, simply returns the N smallest values of x. If number of
-  // tied values makes the return exceed N, then the ties are omitted.
-  if(N <= 0) {
-    throw std::range_error("N must be a positive integer.");
-  }
-
-  int xN = x.size();
-  int rN = (N > xN ? xN : N);
-  Rcpp::DoubleVector kS = Rcpp::DoubleVector(rN);
-  Rcpp::IntegerVector out;
-
-  Rcpp::Environment DescTools = Environment::namespace_env("DescTools");
-  Rcpp::Function Small = DescTools["Small"];
-
-  kS = Small(x, Rcpp::Named("k") = N);
-  out = which_true(x - kS[rN-1] <= 0.00000001);
-
-  if(out.size() > rN) {
-    Rcpp::IntegerVector elub = which_true(x == kS[rN-1]);
-    out = Rcpp::setdiff(out, elub);
-  }
-
-  return out;
 }

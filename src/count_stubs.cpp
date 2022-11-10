@@ -2,7 +2,17 @@
 #include "utilities.h"
 using namespace Rcpp;
 
-
+//' Count stubs for p-value computation using corollary.
+//'
+//' @details Counts the number of colored stubs for each color emanating from each
+//' node which connects to a provided set of nodes in the observed graph, excluding
+//' any stub which could result in a self-loop.
+//'
+//' @param B0 Vector of vertices representing the candidate community.
+//' @param G_stats List of graph statistics returned from `eval_G`.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerMatrix count_stubs_for_B0minusv_cpp(Rcpp::IntegerVector B0, Rcpp::List G_stats) {
   // Unwind input
@@ -72,6 +82,16 @@ Rcpp::IntegerMatrix count_stubs_for_B0minusv_cpp(Rcpp::IntegerVector B0, Rcpp::L
   return P;
 }
 
+//' Count stubs for p-value computation using theorem.
+//'
+//' @details Counts the number of colored stubs for each color emanating from each
+//' node which connects to a provided set of nodes in the observed graph.
+//'
+//' @param B0 Vector of vertices representing the candidate community.
+//' @param G_stats List of graph statistics returned from `eval_G`.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 Rcpp::IntegerMatrix count_stubs_for_B0_cpp(Rcpp::IntegerVector B0, Rcpp::List G_stats) {
   // Unwind input

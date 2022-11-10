@@ -4,28 +4,69 @@
 #include "smallest_indices.h"
 using namespace Rcpp;
 
+//' Evaluates the exponential decay function at the current iteration.
+//'
+//' @param epoch Integer for iteration.
+//' @param learning_rate Double for the learning rate.
+//' @param decay_rate Double for the decay rate.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 double lrd(int epoch, double learning_rate, double decay_rate) {
   return learning_rate*pow(decay_rate, (double)epoch);
 }
 
+//' Checks if the extraction procedure converged.
+//'
+//' @param x An integer vector of nodes.
+//' @param y An integer vector of nodes.
+//' @param z An integer vector of nodes.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 bool is_stable(Rcpp::IntegerVector x, Rcpp::IntegerVector y, Rcpp::IntegerVector z) {
   return x.size() == y.size() && y.size() == z.size() && Rcpp::setequal(x.sort(), y.sort()) && Rcpp::setequal(y.sort(), z.sort());
 }
 
+//' Checks if the extraction procedure reached a cycle.
+//'
+//' @param x An integer vector of nodes.
+//' @param y An integer vector of nodes.
+//' @param z An integer vector of nodes.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 bool is_cycle(Rcpp::IntegerVector x, Rcpp::IntegerVector y, Rcpp::IntegerVector z) {
   return x.size() == z.size() && y.size() - x.size() == 1 && Rcpp::setequal(x.sort(), z.sort());
 }
 
+//' Checks if the extraction procedure reached empty.
+//'
+//' @param x An integer vector of nodes.
+//'
+//' @export
+//' @keywords internal
 //[[Rcpp::export]]
 bool is_empty(Rcpp::IntegerVector x) {
   return x.size() == 0;
 }
 
+//' ECoHeN extraction procedure.
+//'
+//' @param alpha Double of significance level.
+//' @param B0 Vector of vertices representing the candidate community.
+//' @param G_stats List of graph statistics returned from `eval_G`.
+//' @param learning_rate Double between 0 and 1 dictating the maximal allowance on the first iteration.
+//' @param decay_rate Double between 0 and 1 dictating the maximal allowance after the first iteration.
+//' @param adj_method String scalar for the desired multiple correction method. See `p.adjust.methods` for options.
+//' @param max_iter Integer scalar for the maximum number of iterations before halting the extraction procedure. int max_iter, Rcpp::String adj_method
+//'
+//' @export
 //[[Rcpp::export]]
-Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::List G_stats, double learning_rate, double decay_rate, int max_iter, Rcpp::String adj_method) {
+Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::List G_stats, double learning_rate, double decay_rate, Rcpp::String adj_method, int max_iter) {
   // extract variables from input
   int n = as<int>(G_stats["n"]);
   int K = as<int>(G_stats["K"]);
@@ -62,7 +103,6 @@ Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::Lis
 
   // output
   Rcpp::IntegerVector community;
-  Rcpp::List Btrace;
 
   // variables needed for control flow
   int ctr = -1;
@@ -109,9 +149,6 @@ Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::Lis
     subtractions = B02[Rcpp::as<Rcpp::IntegerVector>(lIDs[lIDs_adj_pvals > alpha])];
     B03 = Rcpp::setdiff(B02, subtractions);
 
-    // save results
-    Btrace.push_back(Rcpp::List::create(B02, B03));
-
     // checks for stability, cycles, and emptiness
     unstable = !is_stable(B01, B02, B03);
     noncyclic = !is_cycle(B01, B02, B03);
@@ -122,7 +159,7 @@ Rcpp::List main_search_decay_cpp(double alpha, Rcpp::IntegerVector B0, Rcpp::Lis
   }
 
   // create list of trace items
-  Rcpp::List trace = Rcpp::List::create(Rcpp::Named("seed") = B0, Rcpp::Named("B") = Btrace, Rcpp::Named("cycle") = !noncyclic, Rcpp::Named("convergence") = ctr < max_ctr, Rcpp::Named("iterations") = ctr + 1);
+  Rcpp::List trace = Rcpp::List::create(Rcpp::Named("seed") = B0, Rcpp::Named("cycle") = !noncyclic, Rcpp::Named("convergence") = ctr < max_ctr, Rcpp::Named("iterations") = ctr + 1);
 
   // check conditions
   if (!noncyclic || ctr == max_ctr || !nonempty) {
