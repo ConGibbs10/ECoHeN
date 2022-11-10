@@ -11,7 +11,7 @@ check_arguments(G, node_type, alpha, loco_samples)
 
 \item{node_type}{Name of vertex attribute containing the node types.}
 
-\item{alpha}{Numeric between 0 and 1 representing desired type I error rate.}
+\item{alpha}{Numeric between 0 and 1 representing significance level.}
 
 \item{loco_samples}{Logical indicating whether or not to consider only locally optimal seed sets.}
 }

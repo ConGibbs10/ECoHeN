@@ -14,7 +14,7 @@ convert_affiliation(G, affiliation, method = c("c2m", "m2c"))
 \item{method}{String \code{c2m} or \code{m2c}.}
 }
 \value{
-The converted community strucuture.
+The converted community structure.
 }
 \description{
 Converts a list of communities to a membership list (if overlapping) or vector (if nonoverlapping) using \code{c2m}. Converts a membership list or vector into a list of communities using \code{m2c}.

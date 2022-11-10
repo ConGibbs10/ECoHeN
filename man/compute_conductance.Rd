@@ -4,12 +4,12 @@
 \alias{compute_conductance}
 \title{Compute conductance of a cut.}
 \usage{
-compute_conductance(G, vids)
+compute_conductance(B0, G_stats)
 }
 \arguments{
-\item{G}{igraph representation of graph.}
+\item{B0}{Vector of vertices representing the candidate community.}
 
-\item{vids}{Vector of vertex ids.}
+\item{G_stats}{List of graph statistics returned from \code{eval_G}.}
 }
 \value{
 A double between 0 and 1.

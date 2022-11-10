@@ -4,7 +4,7 @@
 \alias{viz_heterogeneous_sbm}
 \title{Visualize heterogeneous stochastic block model}
 \usage{
-viz_heterogeneous_sbm(G, block_communities = FALSE)
+viz_heterogeneous_sbm(G, block_communities = TRUE)
 }
 \arguments{
 \item{G}{An igraph object attained from \code{sample_heterogeneous_sbm}}
@@ -21,4 +21,10 @@ The plot includes nodes as tick marks where the axes are colored according to th
 }
 \details{
 See the documentation for \code{sample_heterogeneous_sbm} for more details.
+}
+\examples{
+\dontrun{
+G <- sample_heterogeneous_sbm()
+viz_heterogeneous_sbm(G, block_communities = TRUE)
+}
 }

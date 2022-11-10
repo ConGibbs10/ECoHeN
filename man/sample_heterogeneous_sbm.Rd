@@ -6,10 +6,10 @@
 \usage{
 sample_heterogeneous_sbm(
   C = 2,
-  N = list(c(300, 100), c(300, 100)),
-  B = c(400, 400),
+  N = list(c(100, 50), c(100, 50)),
+  B = c(350, 350),
   P = rbind(c(0.05, 0.05), c(0.05, 0.05)),
-  R = rbind(c(0.2, 0.2), c(0.2, 0))
+  R = rbind(c(0.25, 0.1), c(0.1, 0.2))
 )
 }
 \arguments{
@@ -36,10 +36,10 @@ The function generates a random graph according to a heterogeneous stochastic bl
 \dontrun{
 sample_heterogeneous_sbm(
  C = 2,
- N = list(c(300, 100), c(300, 100)),
- B = c(400, 400),
+ N = list(c(100, 50), c(100, 50)),
+ B = c(350, 350),
  P = rbind(c(0.05, 0.05), c(0.05, 0.05)),
- R = rbind(c(0.20, 0.15), c(0.15, 0))
+ R = rbind(c(0.25, 0.10), c(0.10, 0.20))
 )
 }
 }

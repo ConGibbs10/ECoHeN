@@ -23,3 +23,4 @@ y <- c(1, 2, 3, 1)
 vector_equal(x, y)
 all(x == y)
 }
+\keyword{internal}

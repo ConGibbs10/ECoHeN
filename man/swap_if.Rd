@@ -23,3 +23,4 @@ Swap values in two columns based on the order of values in another two columns o
 df <- data.frame(a = c(1, 8, 3), b = c(1, 2, 27))
 swap_if(df, to_compare = c('a', 'b'), to_swap = c('a', 'b'))
 }
+\keyword{internal}

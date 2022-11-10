@@ -17,3 +17,4 @@ A dataframe with unique connection combinations.
 \description{
 Creates a data frame outlining all possible within-type and between-type connections, labeling unique combinations.
 }
+\keyword{internal}
