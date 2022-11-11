@@ -6,7 +6,34 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ECoHeN is to …
+The ECoHeN package is composed many useful functions when working with
+heterogeneous networks. Functionality includes:
+
+-   Extracting communities from a heterogeneous network (ECoHeN) with
+    ECoHeN: `cluster_ECoHeN`,
+-   Extracting a community from an arbitrary seed set (or list of seed
+    sets): `extract_ECoHeN`
+-   Extracting statistically significant communities (ESSC) with ESSC:
+    `cluster_ESSC`,
+-   Refining extracted communities: `refine_ECoHeN`,
+-   Partitioning a heterogeneous network with ZCMod: `cluster_ZCMod`,
+-   Evaluating the assortativity of a discovered community:
+    `eval_community`,
+-   Sampling random heterogeneous networks with the same collection of
+    heterogeneous degree sequences: `sample_heterogeneous_dcm`,
+-   Sampling random heterogeneous networks with specified block
+    structure: `sample_heterogeneous_sbm`,
+-   Visualizing the block structure of sampled networks with block
+    structure: `viz_heterogeneous_sbm`,
+-   Evaluating the overlap between simulated community structure and
+    discovered communities: `eval_jaccard`,
+-   Converting back and forth between membership vectors (reported by
+    partitioning methods) and a collection of communities (reported by
+    extraction methods).
+
+The extraction procedure of the ECoHeN algorithm in written in C++, and
+the algorithm can easily be parallelized across initialized seed sets
+using the `future` package.
 
 ## Installation
 
@@ -18,38 +45,6 @@ You can install the development version of ECoHeN from
 devtools::install_github("ConGibbs10/ECoHeN")
 ```
 
-## Example
+## Example Usage
 
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-# library(ECoHeN)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+We will recreate the empirical data analysis presented in
