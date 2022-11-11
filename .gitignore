@@ -3,5 +3,5 @@
 .Rdata
 .httr-oauth
 .DS_Store
-
-^README-cache$
+README_cache
+README_cache/*
