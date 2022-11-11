@@ -72,11 +72,7 @@ plot(
 )
 ```
 
-<center>
-```{r, echo=FALSE, out.width='50%'}
-knitr::include_graphics('man/figures/README-political_blogs_heterogeneous_crop.png')
-```
-</center>
+<img src="man/figures/README-political_blogs_heterogeneous_crop.png" class="center" width="50%">
 
 When ECoHeN is applied to the political blogs network at $l=1$ and $d=0.99$, conditioning on the observed political ideology, 81 communities are found.  To speed up the extraction procedure set $d=0.6$, for example. The number of communities is likely overstated due to a significant amount of overlap among the discovered communities. As such, these 81 communities are refined to a set of 15 communities with at least four nodes which must not overlap with any other community more than 0.10 as measured by the Jaccard similarity measure.
 
@@ -136,12 +132,7 @@ community_statistics <-
 
 The figure below provides the RatD for each identified community along with the size of the community and whether it is partisan or bipartisan. The RatD for each of the 15 communities extracted from ECoHeN (plotted as circles) and 11 communities detected from ZCMod (plotted as triangles) along with the size of the communities. Each community is identified as partisan (in pink) or bipartisan (in blue). As opposed to ZCMod, ECoHeN can identify both partisan and bipartisan communities. The largest bipartisan community community found by ECoHeN features a RatD nearly 1.6 times larger than the largest ratio of densities attained via ZCMod.
 
-<center>
-```{r, echo=FALSE, message=FALSE, out.width='75%', fig.align='center'}
-knitr::include_graphics('man/figures/README-ratio_vs_size_pinetools.png')
-```
-</center>
-<img src="man/figures/README-ratio_vs_size_pinetools.png" class="center">
+<img src="man/figures/README-ratio_vs_size_pinetools.png" class="center" width="75%">
 
 A key advantage of ECoHeN is its ability to discover bipartisan and partisan communities, whereas ZCmod is confined to only bipartisan communities. The RatD observed from ECoHeN communities are much higher than those communities
 from ZCmod. The larger RatD is partly because 1) the ECoHeN communities tend to be smaller than the ZCmod communities and 2) the fact that ZCmod is a partitioning method and must assign each node to a community, potentially diluting the density of otherwise well-connected collections of nodes. Nevertheless, the largest ECoHeN community has a RatD that is about 1.6 times larger than the ZCmod community with the largest RatD. This application highlights the importance of conditioning on node type when performing community discovery. Since partisan links are particularly common compared to bipartisan links, the partisan communities identified by ECoHeN are also particularly dense. On the other hand, the RatD required by ECoHeN to consider a set a bipartisan nodes a community is naturally lower, a testament to the strengths of ECoHeN as it leverages differences
