@@ -178,6 +178,8 @@ ZCMod.
 <img src="man/figures/README-ratio_vs_size_pinetools.png" width="75%" style="display: block; margin: auto;" />
 </center>
 
+<img src="man/figures/README-ratio_vs_size_pinetools.png" class="center">
+
 A key advantage of ECoHeN is its ability to discover bipartisan and
 partisan communities, whereas ZCmod is confined to only bipartisan
 communities. The RatD observed from ECoHeN communities are much higher
