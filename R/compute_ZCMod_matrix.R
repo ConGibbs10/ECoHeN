@@ -8,7 +8,7 @@
 #' @return A matrix.
 #' @export
 #' @keywords internal
-compute_zcmodularity_matrix <- function(G, node_type) {
+compute_ZCMod_matrix <- function(G, node_type) {
   tm <- create_type_map(G = G, node_type = node_type)
   G_stats <- G %>%
     check_irregularities(., node_type = node_type) %>%

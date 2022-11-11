@@ -20,13 +20,28 @@ cluster_ZCMod <- function(G, node_type, iter = 10) {
   }
 
   # compute modularity matrix
+  message('Computing needed modularity matrix for ZCMod...')
   M <- compute_ZCMod_matrix(G = G, node_type = node_type)
   M <- as.matrix(M)
   K <-
     length(unique(igraph::vertex_attr(G, node_type)))
 
-  # run genlouvain
-  gres <- purrr::map(1:iter, ~genlouvain(M))
+  # run genlouvain with progress
+  width <- Sys.getenv("RSTUDIO_CONSOLE_WIDTH",
+                      getOption("width", 80))
+  width <- as.integer(width)
+  pb <- progress::progress_bar$new(total = iter,
+                                   width = width,
+                                   complete = '-',
+                                   incomplete = ' ',
+                                   format = "Progress: [:bar] 100%")
+  gres <- list()
+  message('Running ZCMod...')
+  for(i in 1:iter) {
+    pb$tick()
+    Sys.sleep(.01)
+    gres[[i]] <- genlouvain(M)
+  }
 
   # keep only non null and set up affiliation matrices
   affinity_matrix <- function(Bm) {
