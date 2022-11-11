@@ -107,7 +107,7 @@ length(pb_ecohen_refined$communities)
 
 The largest partisan (homogeneous) and bipartisan (heterogeneous) communities identified by ECoHeN are presented below.
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics('man/figures/README-political_blogs_clusters_paper.png')
 ```
 
@@ -134,7 +134,7 @@ community_statistics <-
 
 The figure below provides the RatD for each identified community along with the size of the community and whether it is partisan or bipartisan. The RatD for each of the 15 communities extracted from ECoHeN (plotted as circles) and 11 communities detected from ZCMod (plotted as triangles) along with the size of the communities. Each community is identified as partisan (in pink) or bipartisan (in blue). As opposed to ZCMod, ECoHeN can identify both partisan and bipartisan communities. The largest bipartisan community community found by ECoHeN features a RatD nearly 1.6 times larger than the largest ratio of densities attained via ZCMod.
 
-```{r, echo=FALSE, message=FALSE, out.width='75%'}
+```{r, echo=FALSE, message=FALSE, out.width='75%', fig.align='center'}
 knitr::include_graphics('man/figures/README-ratio_vs_size_pinetools.png')
 ```
 

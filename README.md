@@ -78,7 +78,9 @@ plot(
 )
 ```
 
+<center>
 <img src="man/figures/README-political_blogs_heterogeneous_crop.png" width="50%" style="display: block; margin: auto;" />
+</center>
 
 When ECoHeN is applied to the political blogs network at
 ![l=1](https://latex.codecogs.com/png.image?%5Cdpi%7B110%7D&space;%5Cbg_white&space;l%3D1 "l=1")
@@ -172,7 +174,9 @@ largest bipartisan community community found by ECoHeN features a RatD
 nearly 1.6 times larger than the largest ratio of densities attained via
 ZCMod.
 
+<center>
 <img src="man/figures/README-ratio_vs_size_pinetools.png" width="75%" style="display: block; margin: auto;" />
+</center>
 
 A key advantage of ECoHeN is its ability to discover bipartisan and
 partisan communities, whereas ZCmod is confined to only bipartisan
