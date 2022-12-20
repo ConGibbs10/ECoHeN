@@ -22,6 +22,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// count_local_stubs_for_B0minusv_cpp
+Rcpp::IntegerMatrix count_local_stubs_for_B0minusv_cpp(Rcpp::IntegerVector B0, Rcpp::IntegerVector B0c, Rcpp::List G_stats);
+RcppExport SEXP _ECoHeN_count_local_stubs_for_B0minusv_cpp(SEXP B0SEXP, SEXP B0cSEXP, SEXP G_statsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type B0(B0SEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type B0c(B0cSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type G_stats(G_statsSEXP);
+    rcpp_result_gen = Rcpp::wrap(count_local_stubs_for_B0minusv_cpp(B0, B0c, G_stats));
+    return rcpp_result_gen;
+END_RCPP
+}
 // count_stubs_for_B0_cpp
 Rcpp::IntegerMatrix count_stubs_for_B0_cpp(Rcpp::IntegerVector B0, Rcpp::List G_stats);
 RcppExport SEXP _ECoHeN_count_stubs_for_B0_cpp(SEXP B0SEXP, SEXP G_statsSEXP) {
@@ -198,6 +211,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_ECoHeN_count_stubs_for_B0minusv_cpp", (DL_FUNC) &_ECoHeN_count_stubs_for_B0minusv_cpp, 2},
+    {"_ECoHeN_count_local_stubs_for_B0minusv_cpp", (DL_FUNC) &_ECoHeN_count_local_stubs_for_B0minusv_cpp, 3},
     {"_ECoHeN_count_stubs_for_B0_cpp", (DL_FUNC) &_ECoHeN_count_stubs_for_B0_cpp, 2},
     {"_ECoHeN_lrd", (DL_FUNC) &_ECoHeN_lrd, 3},
     {"_ECoHeN_is_stable", (DL_FUNC) &_ECoHeN_is_stable, 3},
