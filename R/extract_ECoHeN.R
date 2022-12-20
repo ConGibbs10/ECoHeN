@@ -46,7 +46,7 @@ extract_ECoHeN <-
       G_stats <- eval_G(G = G, node_type = node_type)
     } else {
       H <- igraph::sample_gnp(2, 1)
-      H <- igraph::set_vertex_attr(G, name = node_type, value = 'null')
+      H <- igraph::set_vertex_attr(H, name = node_type, value = 'null')
       check_arguments(
         G = H,
         node_type = node_type,
