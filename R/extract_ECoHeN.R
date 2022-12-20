@@ -26,7 +26,7 @@ extract_ECoHeN <-
            learning_rate = 1,
            decay_rate = 0.99,
            adj_method = 'fdr',
-           max_iter = igraph::vcount(G)) {
+           max_iter = NULL) {
     # check that arguments meet expectations
     ## Stop implementation if not.
     if(igraph::is.igraph(G)) {
@@ -57,6 +57,11 @@ extract_ECoHeN <-
         stop('G must be an igraph object with valid node type attribute or the result of eval_G.')
       }
       G_stats <- G
+    }
+
+    # if max_iter is null, make n
+    if(is.null(max_iter)) {
+      max_iter <- G_stats$n
     }
 
     # check seed sets
@@ -108,14 +113,14 @@ extract_ECoHeN <-
         purrr::map(., function(final_comm)
           purrr::map_lgl(comms, function(comm)
             vector_equal(final_comm, comm))) %>%
-        purrr::map(., ~ sample_vids[.x])
+        purrr::map(., ~ which(.x))
       fbackground <-
-        setdiff(1:igraph::vcount(G), purrr::reduce(fcomms, c))
+        setdiff(1:G_stats$n, purrr::reduce(fcomms, c))
     } else {
       fcomms <- vector(mode = 'list')
       fpvals <- vector(mode = 'list')
       forigins <- vector(mode = 'list')
-      fbackground <- 1:igraph::vcount(G)
+      fbackground <- 1:G_stats$n
     }
 
     # order results based on community size
