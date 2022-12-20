@@ -43,7 +43,8 @@ eval_G <- function(G, node_type) {
       nodes = nodes,
       adj_nodes = adj_nodes,
       type_map = type_map,
-      stubs = stubs
+      stubs = stubs,
+      class = 'eval_G'
     )
   )
 }
