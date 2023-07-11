@@ -16,21 +16,6 @@ count_stubs_for_B0minusv_cpp <- function(B0, G_stats) {
     .Call(`_ECoHeN_count_stubs_for_B0minusv_cpp`, B0, G_stats)
 }
 
-#' Count stubs for p-value computation using corollary locally.
-#'
-#' @details Counts the number of colored stubs for each color emanating from each
-#' node which connects to a provided set of nodes in the observed graph, excluding
-#' any stub which could result in a self-loop.
-#'
-#' @param B0 Vector of vertices representing the candidate community.
-#' @param G_stats List of graph statistics returned from `eval_G`.
-#'
-#' @export
-#' @keywords internal
-count_local_stubs_for_B0minusv_cpp <- function(B0, B0c, G_stats) {
-    .Call(`_ECoHeN_count_local_stubs_for_B0minusv_cpp`, B0, B0c, G_stats)
-}
-
 #' Count stubs for p-value computation using theorem.
 #'
 #' @details Counts the number of colored stubs for each color emanating from each
